@@ -16,7 +16,7 @@ Principio de Inducción Matemática.
 */
 
 natural(1).                            %Verdadero
-natural(N):- N2 is N-1, natural(N2).   %Los : pegados al ). Para las operaciones aritmeticas 'is' con variables, no hay fuciones.
+natural(N):- N > 1, N2 is N-1, natural(N2).   %Los : pegados al ). Para las operaciones aritmeticas 'is' con variables, no hay fuciones.
 
 /*
 	En prolog le damos la vuelta a las reglas:
