@@ -1,0 +1,26 @@
+
+%Inducción Matemática
+
+Quiero probar si el programa P funciona con todos los elementos del conjunto S.
+Necesitamos que los elementos de S sean ordenables.
+Existe un elemento más pequeño, n0.
+Para odo par de elementos de S puedo saber si n1 < n2.
+
+Naturales
+n0 = 1, 4 < 5 ?
+
+Listas
+n0 = [], [_] < [_,_] ?
+
+Árbol
+n0=vacío,
+
+Grafos
+n0=vacío,
+
+1) El programa P es cierto para n0, P(n0)es cierto.
+2) Si P(n-1) es cierto. entonces P(n) también.
+      P(n) -> P(n+1).
+
+natural(1).
+P(N):- N2 is N-1, P(N2).
