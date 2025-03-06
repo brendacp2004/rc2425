@@ -6,8 +6,8 @@ likes(esteban, malena).
 likes(malena, esteban).
 likes(gustavo, valeria).
 
-pairing(A, _):- chatty(A).    % _ variable por defecto, cualquier cosa.
-pairing(_, A):- chatty(A).
-pairing(A, B):- likes(A,B), likes(B,A).   % la coma es como &&.     a&&b -> c entonces c:-a,b.
+pairing(A, B):- chatty(A), A\= B.    % _ variable por defecto, cualquier cosa.
+pairing(B, A):- chatty(A), A\=B.
+pairing(A, B):- likes(A,B), likes(B,A), A\= B.   % la coma es como &&.     a&&b -> c entonces c:-a,b.
 
 seating(A, B, C, D, E):- pairing(A, B), pairing(B, C), pairing(C, D), pairing(D, E), pairing(E, A).
