@@ -1,0 +1,13 @@
+
+Cláusula de Horn
+
+a /\ b -> c
+
+Cláusula de Horn??
+  a -> b \/ c     NO
+
+  a \/ b -> c     :     a -> c
+                        b -> c
+
+  a -> b /\ c     :     a -> b
+                        a -> c
