@@ -1,0 +1,20 @@
+
+/* 
+   triangle(A, B, C, R) 
+1. Es cierto si R unifica con "equilateral" t A, B, C corresponden a la longitud de un triángulo equilátero.
+1. Es cierto si R unifica con "isosceles" t A, B, C corresponden a la longitud de un triángulo isósceles.
+1. Es cierto si R unifica con "scalene" t A, B, C corresponden a la longitud de un triángulo escaleno.
+
+Sean a, b y c los lados del triángulo. Entonces, las tres expresiones siguientes deben ser verdaderas:
+  a + b ≥ c
+  b + c ≥ a
+  a + c ≥ b
+*/
+
+triangle(A, B, C) :- X is A + B, X >= C, Y is B + C, Y >= A, Z is A + C, Z >= B, A > 0, B > 0, C > 0.
+
+triangle(A, B, C, "equilateral") :- A = B, B = C, triangle(A, B, C).
+triangle(A, B, C, "isosceles") :- A = B, triangle(A, B, C).
+triangle(A, B, C, "isosceles") :- B = C, triangle(A, B, C).
+triangle(A, B, C, "isosceles") :- A = C, triangle(A, B, C).
+triangle(A, B, C, "scalene") :- A \= B, B \= C, A \= C, triangle(A, B, C).
