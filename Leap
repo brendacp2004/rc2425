@@ -1,0 +1,9 @@
+/*
+Un año bisiesto (en el calendario gregoriano) ocurre:
+
+En cada año que sea divisible exactamente por 4.
+A menos que el año sea divisible por 100, en cuyo caso solo es un año bisiesto si el año también es divisible por 400.
+*/
+
+leap(A) :- X is A mod 4, X = 0, Y is A mod 100, Y \= 0.
+leap(A) :- X is A mod 4, X = 0, Y is A mod 100, Y = 0, Z is A mod 400, Z = 0.
