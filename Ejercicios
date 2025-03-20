@@ -12,8 +12,6 @@
 my_Length([], 0).
 my_Length([_|Resto], S):- my_Length(Resto, R), S is R + 1.
 
-
-
 /*
  * comprime(Lista, R) es cierto si R unifica con una 
  * Lista de la sigueinte forma:
@@ -37,3 +35,15 @@ my_Length([_|Resto], S):- my_Length(Resto, R), S is R + 1.
 
 elemento_n([Cab|_], 1, Cab).
 elemento_n([_|Resto], N, R):- N>1, N2 is N-1, elemento_n(Resto, N2, R).
+
+/*
+ * my_reverse(?Lista, ?Resultado)
+ * es cierto si Resultado unifica con una lista que contiene los elementos de Lista en orden inverso.
+ * 
+ * my_reverse([1,2,3,4,5], R).
+ * R = [5,4,3,2,1].
+ * 
+ * */
+
+my_reverse([], []).
+my_reverse([Cab|Resto], R2):- my_reverse(Resto, R), append(R, [Cab], R2).
