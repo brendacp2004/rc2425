@@ -47,3 +47,13 @@ elemento_n([_|Resto], N, R):- N>1, N2 is N-1, elemento_n(Resto, N2, R).
 
 my_reverse([], []).
 my_reverse([Cab|Resto], R2):- my_reverse(Resto, R), append(R, [Cab], R2).
+
+/*
+ * my_append(?List1, ?List2, ?Result)
+ * es cierto si Result unifica con una lista que contiene los 
+ * elementos de List1 seguidos de los elementos de List2 en el mismo orden.
+ * 
+ * */
+
+my_append([], List2, List2).
+my_append([Cab|Resto], List2, [Cab|R]):- my_append(Resto, List2, R).
