@@ -1,0 +1,10 @@
+pareja(Pal, Posible) :-
+    string_lower(Pal, X),
+    string_chars(X, X1),
+    string_lower(Posible, Y),
+    string_chars(Y, Y1),
+    X1 \= Y1,
+    permutation(X1, Y1).
+    
+anagram(Pal, Posibles, Solucion) :-
+    include(pareja(Pal), Posibles, Solucion).
