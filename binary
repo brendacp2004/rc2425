@@ -1,0 +1,11 @@
+num_binario(48, 0).
+num_binario(49, 1).
+
+binary(Bin, Dec) :-
+  string_codes(Bin, X1),
+  maplist(num_binario, X1, X2), % Para comprobar que todos los elementos de X1 sean o 0 o 1 (num_binario).
+  reverse(X2, X3),
+  convertir(X3, Dec).
+  
+convertir([],0).
+convertir([Cab|Resto], R2) :- convertir(Resto, R1), R2 is Cab + 2*R1.
