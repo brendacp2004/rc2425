@@ -1,0 +1,8 @@
+/* pangram(Frase)  
+   Es cierto si Frase contiene todas las letras del alfabeto al menos una vez. */
+pangram(Frase) :-
+    string_lower(Frase, Minuscula),
+    atom_chars(Minuscula, Caracteres),
+    include(is_lower, Caracteres, Letras),  
+    atom_chars("abcdefghijklmnopqrstuvwxyz", Alfabeto),
+    subset(Alfabeto, Letras).
