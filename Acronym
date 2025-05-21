@@ -1,0 +1,19 @@
+/* primer_alfabeto(ListaCaracteres, Caracter)  
+   Es cierto si Caracter es el primer carácter alfabético en ListaCaracteres. */
+primer_alfabeto([Cabeza|Resto], Caracter) :-
+    char_type(Cabeza, alpha), Caracter = Cabeza;
+    primer_alfabeto(Resto, Caracter).
+
+/* primera_letra(Cadena, Letra)  
+   Es cierto si Letra es la primera letra alfabética de Cadena. */
+primera_letra(Cadena, Letra) :-
+    string_chars(Cadena, Caracteres),
+    primer_alfabeto(Caracteres, Letra).
+
+/* abbreviate(Oracion, Acronimo)  
+   Es cierto si Acronimo es el acrónimo generado a partir de Oracion. */
+abbreviate(Oracion, Acronimo) :-
+    string_upper(Oracion, OracionMayuscula),
+    split_string(OracionMayuscula, " -", " -", Palabras),
+    maplist(primera_letra, Palabras, LetrasIniciales),
+    string_chars(Acronimo, LetrasIniciales).
