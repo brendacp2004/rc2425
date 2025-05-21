@@ -1,0 +1,22 @@
+/* ciclo(Planeta, Orbita)  
+   Es cierto si Orbita representa el período orbital del Planeta en años terrestres. */
+ciclo("Earth", 1).
+ciclo("Mercury", 0.2408467). 
+ciclo("Venus", 0.61519726). 
+ciclo("Mars", 1.8808158). 
+ciclo("Jupiter", 11.862615). 
+ciclo("Saturn", 29.447498). 
+ciclo("Uranus", 84.016846). 
+ciclo("Neptune", 164.79132).
+
+/* convertir_anio_segundos(A, Segundos)  
+   Es cierto si A es la conversión de Segundos a años terrestres. */
+convertir_anio_segundos(A, Segundos) :-
+    A is Segundos / 31557600.
+
+/* space_age(Planeta, EdadSegundos, A)  
+   Es cierto si A es la edad en años del objeto en el Planeta dado, basado en EdadSegundos. */
+space_age(Planeta, EdadSegundos, A) :-
+    ciclo(Planeta, Conversion),
+    convertir_anio_segundos(EdadAnios, EdadSegundos),
+    A is EdadAnios / Conversion.
