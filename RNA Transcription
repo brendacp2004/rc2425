@@ -1,12 +1,21 @@
+/* rna_transcription(Rna, Dna)  
+   Es cierto si Dna es la transcripción de la cadena de ARN Rna. */
 rna_transcription(Rna, Dna) :-
   string_chars(Rna, RnaList),
   do_rna_transcription(RnaList, DnaList),
   string_chars(Dna, DnaList).
+
+/* do_rna_transcription(RnaList, DnaList)  
+   Es cierto si DnaList es la transcripción de la lista de caracteres RnaList. */
 do_rna_transcription([], []) :- !.
 do_rna_transcription([R|Rna], [D|Dna]) :-
   convert(R, D),
   do_rna_transcription(Rna, Dna).
+
+/* convert(NucleotidoRna, NucleotidoDna)  
+   Es cierto si NucleotidoDna es la base nitrogenada correspondiente a NucleotidoRna. */
 convert('G', 'C').
 convert('C', 'G').
 convert('T', 'A').
 convert('A', 'U').
+
