@@ -1,0 +1,24 @@
+/* digitos(Numero, ListaDigitos)  
+   Es cierto si ListaDigitos es la lista de los dígitos individuales de Numero. */
+digitos(Numero, ListaDigitos) :-
+    (Numero < 10 -> ListaDigitos = [Numero];
+        UltimoDigito is Numero mod 10,
+        RestoNumero is Numero div 10,
+        ListaDigitos = [UltimoDigito|RestoDigitos],
+        digitos(RestoNumero, RestoDigitos)).
+
+/* suma_potencias(ListaDigitos, Potencia, Resultado)  
+   Es cierto si Resultado es la suma de cada elemento de ListaDigitos elevado a Potencia. */
+suma_potencias([], _, 0).
+suma_potencias([Digito|Resto], Potencia, SumaTotal) :-
+    Valor is Digito ** Potencia,
+    suma_potencias(Resto, Potencia, SumaParcial),
+    SumaTotal is Valor + SumaParcial.
+
+/* armstrong_number(Numero)  
+   Es cierto si Numero es un número de Armstrong (suma de sus dígitos elevados a su cantidad de cifras). */
+armstrong_number(Numero) :-
+    Numero >= 0,
+    digitos(Numero, ListaDigitos),
+    length(ListaDigitos, CantidadDigitos),
+    suma_potencias(ListaDigitos, CantidadDigitos, Numero).
