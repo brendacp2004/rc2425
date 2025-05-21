@@ -1,0 +1,26 @@
+/* numeral_romano(Numero, Romano)  
+   Es cierto si Romano es el numeral romano correspondiente a Numero. */
+numeral_romano(1000, 'M').
+numeral_romano(900, 'CM').
+numeral_romano(500, 'D').
+numeral_romano(400, 'CD').
+numeral_romano(100, 'C').
+numeral_romano(90, 'XC').
+numeral_romano(50, 'L').
+numeral_romano(40, 'XL').
+numeral_romano(10, 'X').
+numeral_romano(9, 'IX').
+numeral_romano(5, 'V').
+numeral_romano(4, 'IV').
+numeral_romano(1, 'I').
+
+/* convert(Numero, Romano)  
+   Es cierto si Romano es la representación en numerales romanos de Numero. */
+convert(0, '').
+convert(Numero, Romano) :-
+    numeral_romano(Valor, Simbolo),
+    Numero >= Valor,
+    Resto is Numero - Valor,
+    convert(Resto, RomanoParcial),
+    string_concat(Simbolo, RomanoParcial, Romano).
+
