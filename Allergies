@@ -1,0 +1,19 @@
+/* alergenos_posiciones(ListaAlergenos)  
+   Es cierto si ListaAlergenos contiene los alérgenos y sus posiciones en la codificación binaria. */
+alergenos_posiciones([
+    eggs-0, peanuts-1, shellfish-2, strawberries-3, 
+    tomatoes-4, chocolate-5, pollen-6, cats-7
+]).
+
+/* allergic_to(Puntaje, Alergeno)  
+   Es cierto si Alergeno está activo en el Puntaje dado, sin usar operadores de bits. */
+allergic_to(Puntaje, Alergeno) :-
+    alergenos_posiciones(Alergenos),
+    member(Alergeno-Posicion, Alergenos),
+    Puntaje mod (2^(Posicion+1)) >= 2^Posicion.
+
+/* allergies(Puntaje, ListaAlergias)  
+   Es cierto si ListaAlergias contiene todos los alérgenos activos en el Puntaje dado. */
+allergies(Puntaje, ListaAlergias) :-
+    alergenos_posiciones(Alergenos),
+    findall(Alergeno, allergic_to(Puntaje, Alergeno), ListaAlergias).
