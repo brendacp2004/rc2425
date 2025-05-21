@@ -1,0 +1,23 @@
+/* square(NumeroCuadrado, Valor)  
+   Es cierto si Valor es la cantidad de granos en el cuadrado NumeroCuadrado. */
+square(1, 1).
+square(NumeroCuadrado, Valor) :-
+    NumeroCuadrado > 1,
+    NumeroCuadrado =< 64,
+    CuadradoAnterior is NumeroCuadrado - 1,
+    square(CuadradoAnterior, ValorAnterior),
+    Valor is 2 * ValorAnterior.
+
+/* total(Total)  
+   Es cierto si Total es la cantidad total de granos en los 64 cuadrados. */
+total(Total) :- total(64, Total).
+
+/* total(Cuadrado, Total)  
+   Es cierto si Total es la cantidad total de granos desde el cuadrado 1 hasta Cuadrado. */
+total(0, 0).
+total(Cuadrado, Total) :-
+    Cuadrado > 0,
+    CuadradoAnterior is Cuadrado - 1,
+    total(CuadradoAnterior, TotalAnterior),
+    square(Cuadrado, ValorCuadrado),
+    Total is TotalAnterior + ValorCuadrado.
