@@ -1,0 +1,25 @@
+/* sonido(Factor, Numero, Texto, Sonido)  
+   Es cierto si Sonido es Texto cuando Numero es múltiplo de Factor. */
+sonido(Factor, Numero, Texto, Sonido) :-
+    Numero mod Factor =:= 0,
+    Sonido = Texto.
+
+sonido(_, _, _, ""). % Si no es múltiplo, Sonido es una cadena vacía.
+
+/* sonidos_totales(Numero, Sonidos)  
+   Es cierto si Sonidos es la concatenación de "Pling", "Plang" y "Plong" según los múltiplos de Numero. */
+sonidos_totales(Numero, Sonidos) :-
+    sonido(3, Numero, "Pling", S1),
+    sonido(5, Numero, "Plang", S2),
+    sonido(7, Numero, "Plong", S3),
+    string_concat(S1, S2, R1),
+    string_concat(R1, S3, Sonidos),
+    Sonidos \= "".
+
+sonidos_totales(Numero, Sonidos) :-
+    number_string(Numero, Sonidos). % Si no hay sonidos, usa el número como cadena.
+
+/* convert(Numero, Sonidos)  
+   Es cierto si Sonidos es la representación del número según la regla de múltiplos. */
+convert(Numero, Sonidos) :-
+    sonidos_totales(Numero, Sonidos).
