@@ -1,0 +1,11 @@
+/* isogram(L)  
+   Es cierto si L es un isograma, es decir, una palabra en la que ninguna letra se repite.  
+   - Convierte L a minúsculas.  
+   - Extrae los caracteres individuales.  
+   - Filtra solo las letras alfabéticas.  
+   - Verifica que todas sean únicas utilizando `is_set/1`. */
+isogram(L) :-
+    string_lower(L, Low),       
+    string_chars(Low, Chars),      
+    include(is_alpha, Chars, Letters),    
+    is_set(Letters).
