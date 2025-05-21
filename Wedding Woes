@@ -1,13 +1,27 @@
-
+/* chatty(Persona)  
+   Es cierto si Persona es conversadora. */
 chatty(gustavo).
 chatty(valeria).
 
+/* likes(Persona1, Persona2)  
+   Es cierto si Persona1 tiene afinidad con Persona2. */
 likes(esteban, malena).
 likes(malena, esteban).
 likes(gustavo, valeria).
 
-pairing(A, B):- chatty(A), A\= B.    % _ variable por defecto, cualquier cosa.
-pairing(B, A):- chatty(A), A\=B.
-pairing(A, B):- likes(A,B), likes(B,A), A\= B.   % la coma es como &&.     a&&b -> c entonces c:-a,b.
+/* pairing(Persona1, Persona2)  
+   Es cierto si Persona1 y Persona2 pueden formar una pareja,
+   ya sea porque una es conversadora o porque tienen afinidad mutua. */
+pairing(A, B) :- chatty(A), A \= B.
+pairing(B, A) :- chatty(A), A \= B.
+pairing(A, B) :- likes(A, B), likes(B, A), A \= B.
 
-seating(A, B, C, D, E):- pairing(A, B), pairing(B, C), pairing(C, D), pairing(D, E), pairing(E, A).
+/* seating(A, B, C, D, E)  
+   Es cierto si A, B, C, D y E pueden sentarse juntos formando un ciclo de parejas. */
+seating(A, B, C, D, E) :- 
+    pairing(A, B),
+    pairing(B, C),
+    pairing(C, D),
+    pairing(D, E),
+    pairing(E, A).
+
