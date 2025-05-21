@@ -1,0 +1,6 @@
+/* string_reverse(Cadena, Invertida)  
+   Es cierto si Invertida es la versión invertida de Cadena. */
+string_reverse(Cadena, Invertida) :-
+    string_chars(Cadena, Caracteres),
+    reverse(Caracteres, CaracteresInvertidos),
+    string_chars(Invertida, CaracteresInvertidos).
