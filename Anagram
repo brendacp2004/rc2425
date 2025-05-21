@@ -1,3 +1,5 @@
+/* pareja(Pal, Posible)  
+   Es cierto si Posible es un anagrama de Pal y no es idéntico a él. */
 pareja(Pal, Posible) :-
     string_lower(Pal, X),
     string_chars(X, X1),
@@ -5,6 +7,8 @@ pareja(Pal, Posible) :-
     string_chars(Y, Y1),
     X1 \= Y1,
     permutation(X1, Y1).
-    
+
+/* anagram(Pal, Posibles, Solucion)  
+   Es cierto si Solucion es la lista de anagramas válidos de Pal dentro de Posibles. */
 anagram(Pal, Posibles, Solucion) :-
     include(pareja(Pal), Posibles, Solucion).
