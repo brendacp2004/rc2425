@@ -1,11 +1,20 @@
+/* num_binario(Codigo, Digito)  
+   Es cierto si Codigo corresponde al carácter ASCII de '0' o '1', y Digito es su valor numérico. */
 num_binario(48, 0).
 num_binario(49, 1).
 
+/* binary(Bin, Dec)  
+   Es cierto si Bin es una cadena binaria y Dec su equivalente decimal. */
 binary(Bin, Dec) :-
   string_codes(Bin, X1),
-  maplist(num_binario, X1, X2), % Para comprobar que todos los elementos de X1 sean o 0 o 1 (num_binario).
+  maplist(num_binario, X1, X2),
   reverse(X2, X3),
   convertir(X3, Dec).
-  
-convertir([],0).
-convertir([Cab|Resto], R2) :- convertir(Resto, R1), R2 is Cab + 2*R1.
+
+/* convertir(ListaBinaria, Decimal)  
+   Es cierto si ListaBinaria representa un número binario y Decimal es su valor en base 10. */
+convertir([], 0).
+convertir([Cab|Resto], R2) :- 
+  convertir(Resto, R1),
+  R2 is Cab + 2 * R1.
+
