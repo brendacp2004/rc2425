@@ -1,0 +1,14 @@
+/* filtra_nil(ListaConPosiblesNil, ListaSinNil)  
+   Es cierto si ListaSinNil contiene los elementos de ListaConPosiblesNil sin los valores 'nil'. */
+filtra_nil([], []).
+filtra_nil([nil|Resto], R) :-
+    filtra_nil(Resto, R).
+filtra_nil([Cab|Resto], [Cab|R]) :-
+    Cab \== nil,
+    filtra_nil(Resto, R).
+
+/* flatten_list(ListaOriginal, ListaAplanada)  
+   Es cierto si ListaAplanada es la versión aplanada de ListaOriginal sin elementos 'nil'. */
+flatten_list(ListaOriginal, ListaAplanada) :-
+    flatten(ListaOriginal, ListaTemporal),
+    filtra_nil(ListaTemporal, ListaAplanada).
