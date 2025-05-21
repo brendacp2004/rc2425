@@ -1,0 +1,17 @@
+/* square_of_sum(Numero, Resultado)  
+   Es cierto si Resultado es el cuadrado de la suma de los primeros Numero naturales. */
+square_of_sum(Numero, Resultado) :-
+    Suma is (Numero * (Numero + 1)) / 2,
+    Resultado is Suma * Suma.
+
+/* sum_of_squares(Numero, Resultado)  
+   Es cierto si Resultado es la suma de los cuadrados de los primeros Numero naturales. */
+sum_of_squares(Numero, Resultado) :-
+    Resultado is (Numero * (Numero + 1) * (2 * Numero + 1)) / 6.
+
+/* difference(Numero, Resultado)  
+   Es cierto si Resultado es la diferencia entre el cuadrado de la suma y la suma de los cuadrados. */
+difference(Numero, Resultado) :-
+    square_of_sum(Numero, CuadradoDeSuma),
+    sum_of_squares(Numero, SumaDeCuadrados),
+    Resultado is CuadradoDeSuma - SumaDeCuadrados.
