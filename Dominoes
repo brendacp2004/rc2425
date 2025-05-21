@@ -1,0 +1,28 @@
+/* conectar(ParesDisponibles, CabezaCadenaActual, NuevoParEnganchado, RestoPares)  
+   Es cierto si se puede extraer un par de ParesDisponibles que conecte con CabezaCadenaActual. */
+conectar(P, (A,B), (X,A), R) :-
+    select((X,A), P, R).
+conectar(P, (A,B), (X,A), R) :-
+    select((A,X), P, R).
+
+/* armar_cadena(ParesPendientes, CadenaActual, CadenaFinal)  
+   Es cierto si a partir de ParesPendientes se puede completar una cadena válida. */
+armar_cadena([], C, C).
+armar_cadena(P, [(A,B)|T], F) :-
+    conectar(P, (A,B), N, NP),
+    armar_cadena(NP, [N, (A,B)|T], F).
+
+/* hacer_cadena(ParesIniciales, CadenaResultante)  
+   Es cierto si se puede formar una cadena válida con ParesIniciales. */
+hacer_cadena([], []).
+hacer_cadena(P, C) :-
+    select((A,B), P, RP),
+    ( armar_cadena(RP, [(B,A)], C) ;
+      armar_cadena(RP, [(A,B)], C) ),
+    last(C, (_, E)),
+    C = [(E, _)|_].
+
+/* can_chain(ListaDePares)  
+   Es cierto si ListaDePares puede organizarse en una cadena válida. */
+can_chain([]).
+can_chain(X) :- hacer_cadena(X, _).
