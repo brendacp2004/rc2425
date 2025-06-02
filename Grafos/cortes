@@ -1,0 +1,22 @@
+/*Ejemplo cortes rojos*/ 
+cuenta_hojas(nil,0).
+cuenta_hojas(a(_,nil,nil), 1):- !.
+cuenta_hojas(a(_,HI,HD), R):-
+  cuenta_hojas(HI, RI),
+  cuenta_hojas(HD, RD),
+  R is RI+RD.
+
+/*Ejemplo cortes verdes*/ 
+ cuenta_hojas(nil,0).
+ cuenta_hojas(a(_,nil,nil), 1):- !.
+ cuenta_hojas(a(_,HI,HD),  ):-
+  HI \= nil, HD \= nil, !,
+  cuenta_hojas(HI, RI).
+  cuenta_hojas(HD, RD),
+  R is RI + RD.
+ cuenta_hojas(a(_, nil, HD), RD):-
+  HD \= nil, !,
+  cuenta_hojas(HD, RD).
+ cuenta_hojas(a(_, HI, nil), RI):-
+  HD \= nil,
+  cuenta_hojas(HI, RI).
