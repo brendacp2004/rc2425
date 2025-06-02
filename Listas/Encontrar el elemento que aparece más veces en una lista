@@ -1,0 +1,15 @@
+%-----------------------------------------------------
+% mas_veces(+Lista, -Elem, -Num)
+ %es cierto cuando Elem unifica con el elemento
+ %que se repite más veces en la lista Lista
+ %y Num unifica con el número de veces que se
+ %repite dicho elemento.
+ %-----------------------------------------------------
+mas_veces([],_,0).
+ mas_veces([Ca|Co], Ca, N2):-
+  mas_veces(Co,El,N),
+  Ca=El,
+  N2 is N+1.
+ mas_veces([Ca|Co], El, N):-
+  mas_veces(Co,El,N),
+  Ca\=El.
