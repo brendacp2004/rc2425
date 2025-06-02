@@ -1,0 +1,17 @@
+/*Cabecera*/
+camino(+Inicio, +Fin, +Grafo, +Visitados, ?Camino,<?Peso_total>, <?Camino2>) 
+
+/*Caso Base*/
+camino(Fin, Fin, _, [])
+
+/*Caso Base Alternativo*/
+camino(Inicio, Fin, _, [arista(Inicio, Fin)]):- arista(Inicio, Fin).
+
+/*Caso Recursivo
+Inicio ----→ TMP ----------------------→ Fin */
+camino(Inicio, Fin, grafo(Vertices, Aristas),
+  Visitados, [arista(Inicio,TMP)|Camino]):
+ conectado(Inicio, TMP, Aristas),
+ \+ visitado(Inicio, Fin, Visitados),
+ camino(TMP, Fin, [arista(Inicio, TMP)|Visitados],
+ Camino)
