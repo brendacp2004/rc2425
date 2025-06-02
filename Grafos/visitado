@@ -1,0 +1,8 @@
+/*Grafos no dirigidos*/
+ % visitado(+Inicio, +Fin, +Visitados)
+ visitado(Inicio, Fin, Aristas):- member(arista(Inicio, Fin), Visitados).
+ visitado(Inicio, Fin, Aristas):- member(arista(Fin, Inicio), Visitados).
+
+/*Grafos dirigidos*/
+ % visitado(+Inicio, +Fin, +Visitados)
+ visitado(Inicio, Fin, Aristas):- member(arista(Inicio, Fin), Visitados).
