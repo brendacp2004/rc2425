@@ -1,0 +1,18 @@
+/* cuenta_nodos(+Arbol_binario, ?Num_nodos) 
+   
+es cierto cuando Num_nodos unifica con el  
+numero de nodos del árbol "Arbol_binario" */ 
+ 
+cuenta_nodos(nil, 0). 
+ 
+cuenta_nodos(a(_, HI, HD), R):- 
+  cuenta_nodos(HI, RI), 
+  cuenta_nodos(HD, RD), 
+  R is RI + RD + 1. 
+ 
+dato(a(a,a(b,a(d,nil,nil),a(e,nil,nil)),a(c,nil,a(f,a(
+ g,nil,nil),nil)))). 
+ 
+/* 1 ?- dato(A), cuenta_nodos(A, N). 
+A = a(a, a(b, a(d, nil, nil), a(e, nil, nil)), a(c, 
+nil, a(f, a(g, nil, nil), nil))) 
