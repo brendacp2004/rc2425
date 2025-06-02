@@ -1,0 +1,21 @@
+ /*  lista_hojas(+Arbol_binario, ?Lista_hojas)
+ es cierto cuando Lista_hojas unifica con una lista que con
+tiene las etiquetas de las hojas del árbol “Arbol_binario” 
+*/
+ lista_hojas(nil, []).
+ lista_hojas(a(_, nil, HD),LD):-
+HD \=nil,
+ lista_hojas(HD, LD).   lista_hojas(a(_,HI,nil), LI):-
+HI \= nil,
+ lista_hojas(HI, LI).
+ lista_hojas(a(_, HI, HD), LR):-
+HI \= nil, HD\=nil,
+ lista_hojas(HI, LI),
+ lista_hojas(HD, LD),
+ append(LI, LD, LR).  lista_hojas(a(Et, nil,nil), [Et]).
+ dato(a(a,a(b,a(d,nil,nil),a(e,nil,nil)),a(c,nil,a(f,a(g,ni
+ l,nil),nil)))).
+ /* 1 ?- dato(A), lista_hojas(A, R).
+ A = a(a, a(b, a(d, nil, nil), a(e, nil, nil)), a(c, nil, 
+a(f, a(g, nil, nil), nil)))
+ R = [d, e, g] */
