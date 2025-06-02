@@ -1,0 +1,9 @@
+%----------------------------------------------------- 
+% invertir(+Lista, -ListaR) es cierto cuando ListaR  
+% unifica con una lista que contiene los mismos  
+% elementos que Lista en orden inverso. 
+%----------------------------------------------------- 
+invertir([], []). 
+invertir([Cab|Resto], RT) :- 
+   invertir(Resto, R), 
+   append(R, [Cab], RT). 
