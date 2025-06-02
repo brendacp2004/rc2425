@@ -1,0 +1,22 @@
+ /*
+ profundidad_ag(+Arbol_generico, ?P)
+   es cierto cuando P unifica con la profundidad del
+   árbol genérico “Arbol_genérico”
+ */
+ profundidad_ag(a(_, Lista_hijos), R):-
+ profundidad_ag(Lista_hijos, PH),
+ R is PH+1.
+ profundidad_ag([], 0).
+ profundidad_ag([Cab|Resto], PCab):-
+   profundidad_ag(Cab, PCab),
+   profundidad_ag(Resto, PResto),
+   PCab >= PResto. 
+profundidad_ag([Cab|Resto], PResto):-
+   profundidad_ag(Cab, PCab),
+   profundidad_ag(Resto, PResto),
+ PCab < PResto. 
+dato(a(a,[a(f,[a(g,[])]),a(c,[]),a(b,[a(d,[]),a(e,[])])])).
+ /*
+ dato(A), profundidad_ag(A,N).
+ A = a(a, [a(f, [a(g, [])]), a(c, []), a(b, [a(d, []), a(e, [])])])
+ N = 3
