@@ -1,0 +1,8 @@
+/*Grafos no dirigidos*/
+ % conectado(+Inicio, +Fin, +Aristas)
+ conectado(Inicio, Fin, Aristas):- member(arista(Inicio, Fin), Aristas).
+ conectado(Inicio, Fin, Aristas):- member(arista(Fin, Inicio), Aristas).
+
+/*Grafos dirigidos*/
+% conectado(+Inicio, +Fin, +Aristas)
+ conectado(Inicio, Fin, Aristas):- member(arista(Inicio, Fin), Aristas).
