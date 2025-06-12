@@ -1,0 +1,25 @@
+real((ParteReal, _), ParteReal).
+imaginary((_, ParteImaginaria), ParteImaginaria).
+
+conjugate((ComponenteReal, ComponenteImaginaria), (ComponenteReal, ImConjugada)) :-
+    ImConjugada is 0 - ComponenteImaginaria.
+
+abs((ParteRealNum, ParteImaginariaNum), ResultadoAbsoluto) :-
+    ResultadoAbsoluto is (ParteRealNum^2 + ParteImaginariaNum^2)^(1/2).
+
+add((RealA, ImagA), (RealB, ImagB), (RealSuma, ImagSuma)) :-
+    RealSuma is RealA + RealB,
+    ImagSuma is ImagA + ImagB.
+
+sub((RealA, ImagA), (RealB, ImagB), (RealResta, ImagResta)) :-
+    RealResta is RealA - RealB,
+    ImagResta is ImagA - ImagB.
+
+mul((RealA, ImagA), (RealB, ImagB), (RealProd, ImagProd)) :-
+    RealProd is (RealA * RealB - ImagA * ImagB),
+    ImagProd is (RealA * ImagB + ImagA * RealB).
+
+div((RealA, ImagA), (RealB, ImagB), (RealDiv, ImagDiv)) :-
+    Denominador is (RealB^2 + ImagB^2),
+    RealDiv is (RealA * RealB + ImagA * ImagB) / Denominador,
+    ImagDiv is (ImagA * RealB - RealA * ImagB) / Denominador.
